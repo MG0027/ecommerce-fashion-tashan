@@ -1,0 +1,64 @@
+.header-container {
+  font-family: 'Futura', sans-serif;
+}
+
+.header-logo {
+  font-weight: bold;
+  padding-right: 3rem;
+  margin-left: -3rem;
+}
+
+.nav-links {
+  margin-top: 0;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  padding: 10px 0;
+}
+
+.nav-item {
+  padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  /* Keep elements horizontally aligned on small screens */
+  .header-container {
+    display: flex;
+    justify-content: space-between; /* Ensures space between elements */
+    align-items: center;
+    flex-direction: row; /* Horizontal layout */
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: space-around; /* Distribute items evenly */
+    margin-top: 0;
+  }
+
+  .nav-link {
+    font-size: 1rem; /* Slightly reduce font size on small screens */
+    padding: 5px 10px;
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    min-width: 150px;
+  }
+
+  .dropdown-toggle {
+    font-size: 1.5rem;
+  }
+
+  .header-logo {
+    font-size: 1.5rem;
+    padding-right: 0;
+    margin-left: 0;
+    margin-bottom: 0; /* Remove margin at bottom */
+  }
+
+  .nav-item {
+    text-align: center;
+    padding: 0.5rem;
+  }
+}

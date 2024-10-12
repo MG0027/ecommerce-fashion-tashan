@@ -1,0 +1,62 @@
+/* Sidebar.module.css */
+
+/* General Sidebar Styling */
+.sidebar-container {
+  width: 280px;
+  padding: 1rem;
+  /* Optional: background color */
+}
+
+.sidebar-button {
+  font-family: 'Futura, sans-serif';
+  font-weight: bold;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-button i {
+  margin-left: 0.5rem;
+}
+
+/* Collapse Menu */
+.collapse ul {
+  font-family: 'Futura, sans-serif';
+  list-style: none;
+  padding-left: 0;
+}
+
+.collapse li {
+  margin-bottom: 1rem;
+}
+
+.collapse label {
+  margin-left: 0.5rem;
+  font-family: 'Futura, sans-serif';
+  cursor: pointer;
+}
+
+/* Media Queries for Mobile Screens */
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 70px; /* Reduce sidebar width on mobile */
+    padding: 0.5rem;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .sidebar-button {
+    font-size: 12px; /* Reduce button text size */
+    padding: 8px 12px;
+  }
+
+  .collapse ul {
+    font-size: 12px; /* Smaller font size for collapse items */
+  }
+
+  .collapse label {
+    font-size: 12px; /* Adjust font size for labels */
+  }
+}

@@ -1,0 +1,18 @@
+
+FROM node:16
+
+
+WORKDIR /usr/src/backend
+
+COPY package*.json ./
+
+RUN npm install
+
+
+COPY . .
+
+
+EXPOSE 2700
+
+# Start the backend app
+CMD ["npm", "start"]

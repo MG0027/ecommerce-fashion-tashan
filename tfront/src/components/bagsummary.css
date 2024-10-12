@@ -1,0 +1,59 @@
+.bag-summary {
+  vertical-align: top;
+  display: inline-block;
+  width: 35%;
+  padding: 24px 0 0 16px;
+  color: #282c3f;
+  font-size: 13px;
+  line-height: 1.42857143;
+  
+  margin-right: 4rem;
+  
+}
+
+.bag-details-container {
+  margin-bottom: 16px;
+}
+
+.price-header {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 24px 0 16px;
+  color: #535766;
+}
+
+.price-item {
+  margin-bottom: 12px;
+  line-height: 16px;
+  font-size: 14px;
+  color: #282c3f;
+}
+
+.price-item-value {
+  float: right;
+}
+
+
+
+.price-footer {
+  font-weight: 700;
+  font-size: 15px;
+  padding-top: 16px;
+  border-top: 1px solid #eaeaec;
+  color: #3e4152;
+  line-height: 16px;
+}
+
+.btn-place-order {
+  width: 100%;
+  letter-spacing: 1px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 2px;
+  border-width: 0px;
+  padding: 10px 16px;
+  background-color: rgba(0, 0, 0, 0.842);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-top: 2rem;
+}

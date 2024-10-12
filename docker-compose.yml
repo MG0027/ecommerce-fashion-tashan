@@ -1,0 +1,58 @@
+services:
+  backend:
+    build:
+      context: ./tback
+      dockerfile: dockerfile.backend
+    ports:
+      - "2700:2700"  
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/tashan
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - tashan-network
+    volumes:
+      # Mount the local tback folder to /app inside the container
+      - ./tback:/app
+
+  frontend:
+    build:
+      context: ./tfront
+      dockerfile: dockerfile.frontend
+    ports:
+      - "5173:5173"  # Expose port 80 for Nginx to serve the app
+    depends_on:
+      - backend
+    networks:
+      - tashan-network
+    volumes:
+      # Mount the local tfront folder to /app inside the container
+      - ./tfront:/app
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - tashan-network
+    volumes:
+      - mongo-data:/data/db
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - tashan-network
+
+  
+
+volumes:
+  mongo-data:
+
+networks:
+  tashan-network:
+    driver: bridge

@@ -1,0 +1,19 @@
+# Step 1: Use Node image to build the app
+FROM node:18-alpine AS build
+
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json from the current directory (which is ./tfront)
+COPY package.json package-lock.json ./
+
+# Install dependencies for the frontend
+RUN npm install
+
+# Copy the rest of the frontend files
+COPY . ./
+
+
+EXPOSE 5173
+
+# Command to run the frontend app in development mode
+CMD ["npm", "run", "dev"]
