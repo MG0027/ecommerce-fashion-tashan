@@ -15,7 +15,7 @@ services:
     networks:
       - tashan-network
     volumes:
-      # Mount the local tback folder to /app inside the container
+    
       - ./tback:/app
 
   frontend:
@@ -23,13 +23,13 @@ services:
       context: ./tfront
       dockerfile: dockerfile.frontend
     ports:
-      - "5173:5173"  # Expose port 80 for Nginx to serve the app
+      - "5173:5173" 
     depends_on:
       - backend
     networks:
       - tashan-network
     volumes:
-      # Mount the local tfront folder to /app inside the container
+     
       - ./tfront:/app
 
   mongo:

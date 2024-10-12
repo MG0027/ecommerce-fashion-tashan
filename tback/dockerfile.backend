@@ -14,5 +14,5 @@ COPY . .
 
 EXPOSE 2700
 
-# Start the backend app
+
 CMD ["npm", "start"]
