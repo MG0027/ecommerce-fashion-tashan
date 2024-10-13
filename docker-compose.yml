@@ -9,8 +9,8 @@ services:
 
   backend:
     build:
-      context: .
-      dockerfile: tback/dockerfile.backend
+      context: ./tback
+      dockerfile: dockerfile.backend
     ports:
       - "2700:2700"
     environment:
@@ -23,6 +23,7 @@ services:
       - frontend
     volumes:
       - frontend-build:/usr/src/backend/public
+      - ./tback/public/uploads:/usr/src/backend/public/uploads
 
   mongo:
     image: mongo:latest
@@ -39,7 +40,7 @@ services:
 volumes:
   mongo-data:
   frontend-build:
-  uploads:
+  
 
 networks:
   tashan-network:

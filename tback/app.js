@@ -23,7 +23,7 @@ app.use(express.urlencoded({extended: false}));
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 mongoose
   .connect(config.mongoUrl)
   .then(() => console.log("MongoDB Connected"))

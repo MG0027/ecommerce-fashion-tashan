@@ -7,9 +7,6 @@ RUN npm install
 
 COPY . .
 
-# Copy the frontend build
-COPY --from=frontend /usr/src/app/dist ./public
-RUN mkdir -p uploads
 
 EXPOSE 2700
 
