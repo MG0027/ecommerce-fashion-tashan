@@ -4,7 +4,7 @@ import "./bagsummary.css";
 import { bagitemsActions } from "../store/bagitemsslice";
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-
+import API_BASE_URL from '../config';
 const stripePromise = loadStripe('pk_test_51Q8kC8FMYKdkHPprjphNFtZHkOIXixbs0cx39fX7nzFVLYAAI74sgaAjTjfSGHsq8yYB2NUaQUGwflvQr0yoEUAp00x8VAc4gS'); 
 
 const BagSummary = () => {
@@ -35,7 +35,7 @@ const BagSummary = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:2700/api/create-checkout-session', {
+      const response = await fetch(`${API_BASE_URL}/bag/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const BagSummary = () => {
   
   const clearCartInBackend = async () => {
     try {
-      const response = await fetch('http://localhost:2700/api/clear', {
+      const response = await fetch(`${API_BASE_URL}/bag/clear`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
