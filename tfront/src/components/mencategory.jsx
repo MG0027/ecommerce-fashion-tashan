@@ -7,7 +7,9 @@ import styles from './mencategory.module.css'; // Importing CSS module
 function Mencategory() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const products = useSelector((store) => store.products);
- 
+  const ASSET_BASE_URL = process.env.NODE_ENV === 'production'
+  ? ''
+  : 'http://localhost:2700';
   const filteredProducts = selectedCategory
     ? products.filter(product => product.category2 === selectedCategory && product.category === 'men')
     : products.filter(product => product.category === 'men');
@@ -20,7 +22,7 @@ function Mencategory() {
       {/* Product Cards */}
       <div className={styles['product-container']}>
         {filteredProducts.map((product) => {
-          const imageUrl = `http://localhost:2700${product.image}`;
+          const imageUrl = `${ASSET_BASE_URL}${product.image}`;
           return (
             <div key={product._id} className={styles['product-card']}>
               <img src={imageUrl} className={styles['product-image']} alt={product.name} />

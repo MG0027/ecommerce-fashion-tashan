@@ -1,10 +1,18 @@
+
 services:
+  frontend:
+    build:
+      context: ./tfront
+      dockerfile: dockerfile.frontend
+    volumes:
+      - frontend-build:/usr/src/app/dist
+
   backend:
     build:
-      context: ./tback
-      dockerfile: dockerfile.backend
+      context: .
+      dockerfile: tback/dockerfile.backend
     ports:
-      - "2700:2700"  
+      - "2700:2700"
     environment:
       - MONGO_URL=mongodb://mongo:27017/tashan
       - REDIS_HOST=redis
@@ -12,46 +20,26 @@ services:
     depends_on:
       - mongo
       - redis
-    networks:
-      - tashan-network
+      - frontend
     volumes:
-    
-      - ./tback:/app
-
-  frontend:
-    build:
-      context: ./tfront
-      dockerfile: dockerfile.frontend
-    ports:
-      - "5173:5173" 
-    depends_on:
-      - backend
-    networks:
-      - tashan-network
-    volumes:
-     
-      - ./tfront:/app
+      - frontend-build:/usr/src/backend/public
 
   mongo:
     image: mongo:latest
-    ports:
-      - "27017:27017"
-    networks:
-      - tashan-network
     volumes:
       - mongo-data:/data/db
+    networks:
+      - tashan-network
 
   redis:
     image: redis:alpine
-    ports:
-      - "6379:6379"
     networks:
       - tashan-network
 
-  
-
 volumes:
   mongo-data:
+  frontend-build:
+  uploads:
 
 networks:
   tashan-network:

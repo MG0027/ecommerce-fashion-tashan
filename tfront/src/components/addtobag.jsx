@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { bagitemsActions } from '../store/bagitemsslice';
 import { MdDeleteForever } from "react-icons/md";
-
+import API_BASE_URL from '../config';
 const AddToBag = ({ product }) => {
   console.log(product);
   if (!product) {
@@ -30,7 +30,7 @@ const AddToBag = ({ product }) => {
       return;
     }
     try {
-      await axios.post('http://localhost:2700/api/add-to-bag', {
+      await axios.post(`${API_BASE_URL}/bag/add-to-bag`, {
         userId: userId,
         productId: product._id,
         quantity: 1,
@@ -53,7 +53,7 @@ const AddToBag = ({ product }) => {
 
   const removeFromCart = async () => {
     try {
-      await axios.delete(`http://localhost:2700/api/remove-from-bag`, {
+      await axios.delete(`${API_BASE_URL}/bag/remove-from-bag`, {
         data: {
           userId: userId,
           productId: product._id

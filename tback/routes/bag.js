@@ -92,7 +92,7 @@ router.delete('/remove-from-bag', async (req, res) => {
 
 
 
-router.get('/bag/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
        
         const userId = new mongoose.Types.ObjectId(req.params.id);

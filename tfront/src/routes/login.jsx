@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../useauth';
-
+import API_BASE_URL from '../config';
 function Login() {
   const navigate = useNavigate();
   const emailRef = useRef(null);
@@ -16,7 +16,7 @@ function Login() {
     const password = passwordRef.current.value;
     try {
           
-      const response = await fetch('http://localhost:2700/user/login', { 
+      const response = await fetch(`${API_BASE_URL}/user/login`, { 
         method: 'POST',
         credentials: 'include',
         headers: {

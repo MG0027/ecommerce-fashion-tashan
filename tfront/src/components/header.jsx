@@ -8,7 +8,7 @@ import { CiUser } from "react-icons/ci";
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from '../store/userslice';
 import { bagitemsActions } from '../store/bagitemsslice';
-
+import API_BASE_URL from '../config';
 
 
 const Header = () => {
@@ -31,7 +31,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
    
-      const response = await axios.post('http://localhost:2700/user/logout', {}, { withCredentials: true });
+      const response = await axios.post(`${API_BASE_URL}/user/logout`, {}, { withCredentials: true });
   
       if (response.status === 200) {
        

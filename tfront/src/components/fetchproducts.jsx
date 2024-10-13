@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productsActions } from "../store/productslice";
 import { fetchStatusActions } from "../store/fetchingstatusslice";
-
+import API_BASE_URL from "../config";
 
 const FetchProducts = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const FetchProducts = () => {
     // const controller = new AbortController();
     // const signal = controller.signal;
     dispatch(fetchStatusActions.markFetchingStarted());
-    fetch("http://localhost:2700/add")
+    fetch(`${API_BASE_URL}/add"`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch products");

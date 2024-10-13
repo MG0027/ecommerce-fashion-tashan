@@ -1,18 +1,16 @@
-
 FROM node:16
-
 
 WORKDIR /usr/src/backend
 
 COPY package*.json ./
-
 RUN npm install
-
 
 COPY . .
 
+# Copy the frontend build
+COPY --from=frontend /usr/src/app/dist ./public
+RUN mkdir -p uploads
 
 EXPOSE 2700
-
 
 CMD ["npm", "start"]

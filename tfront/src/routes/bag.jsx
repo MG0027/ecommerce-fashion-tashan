@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { bagitemsActions } from '../store/bagitemsslice';
 import { useDispatch, useSelector } from 'react-redux';
-
+import API_BASE_URL from '../config';
 import BagSummary from '../components/bagsummary';
 import { AiOutlineDelete } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
@@ -12,14 +12,16 @@ const Bag = () => {
     const { userId } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate(); 
-
+    const ASSET_BASE_URL = process.env.NODE_ENV === 'production'
+    ? ''
+    : 'http://localhost:2700';
    
  
 
     useEffect(() => {
         const fetchBagItems = async () => {
             try {
-                const res = await fetch(`http://localhost:2700/api/bag/${userId}`);
+                const res = await fetch(`${API_BASE_URL}/bag/${userId}`);
                 if (!res.ok) {
                     throw new Error("Failed to fetch bagitems");
                 }
@@ -37,7 +39,7 @@ const Bag = () => {
 
     const handleRemoveFromCart = async (item) => {
         try {
-            await axios.delete(`http://localhost:2700/api/remove-from-bag`, {
+            await axios.delete(`${API_BASE_URL}/bag/remove-from-bag`, {
                 data: {
                     userId: userId,
                     productId: item.productId,
@@ -85,7 +87,7 @@ const Bag = () => {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                         {bagitems.map((item) => {
-                            const imageUrl = `http://localhost:2700${item.productImage}`;
+                            const imageUrl = `${ASSET_BASE_URL}${item.productImage}`;
                             return (
                                 <div key={item.productId} className="card" style={{ width: "18rem", margin: "10px", border: 'none', position: 'relative' }}>
                                     <img src={imageUrl} className="card-img-top" alt={item.productName} />

@@ -4,7 +4,9 @@ import AddToBag from "../components/addtobag";
 
 function Women() {
   const products = useSelector((store) => store.products);
-
+  const ASSET_BASE_URL = process.env.NODE_ENV === 'production'
+   ? ''
+   : 'http://localhost:2700';
   if (!products || products.length === 0) {
     return <p>Loading products...</p>;
   }
@@ -15,7 +17,7 @@ function Women() {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {womenProducts.map((product) => {
-          const imageUrl = `http://localhost:2700${product.image}`;
+          const imageUrl = `${ASSET_BASE_URL}${product.image}`;
           return (
             <div key={product._id} className="card" style={{ width: "18rem", margin: "10px", border: 'none', position: 'relative' }}>
               <img src={imageUrl} className="card-img-top" alt={product.name} />

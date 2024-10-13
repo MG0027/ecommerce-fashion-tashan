@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bagitemsActions } from '../store/bagitemsslice'; 
-
+import API_BASE_URL from "../config";
 function Fetchbag() {
   const { userId } = useSelector(state => state.user); 
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function Fetchbag() {
     const fetchBagItems = async () => {
       try {
       
-        const res = await fetch(`http://localhost:2700/api/bag/${userId}`);
+        const res = await fetch(`${API_BASE_URL}/bag/${userId}`);
         if (!res.ok) {
           throw new Error("Failed to fetch bag items");
         }
