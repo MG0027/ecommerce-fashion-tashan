@@ -49,7 +49,7 @@ router.post("/logout", (req, res) => {
 router.get("/info", (req, res) => {
   
   const token = req.cookies.token;
-  
+  console.log(token);
 
   if (!token) {
     return res.status(401).json({ message: "No token provided" });
