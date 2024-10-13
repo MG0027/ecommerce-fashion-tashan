@@ -9,7 +9,9 @@ const router = Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.resolve(`./public/uploads/`)); 
+    const uploadPath = path.resolve(__dirname, 'public', 'uploads');
+    console.log("Uploading to:", uploadPath);  // Log upload path
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     const fileName = `${Date.now()}-${file.originalname}`; 
