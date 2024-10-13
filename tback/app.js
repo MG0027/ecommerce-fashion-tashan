@@ -13,7 +13,7 @@ const userRoute = require("./routes/user");
 const app = express();
 
 app.use(cors({
-  origin: config.frontendUrl,
+  origin: 'https://tashan.onrender.com',
   credentials: true,
 }));
 
