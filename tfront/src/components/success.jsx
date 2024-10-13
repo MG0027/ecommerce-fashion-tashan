@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bagitemsActions } from '../store/bagitemsslice';
-
+import API_BASE_URL from '../config';
 const Success = () => {
   const dispatch = useDispatch();
   const [isHovered, setIsHovered] = useState(false); 
@@ -15,7 +15,7 @@ const Success = () => {
  
   const clearCartInBackend = async () => {
     try {
-      const response = await fetch('http://localhost:2700/api/clear', {
+      const response = await fetch(`${API_BASE_URL}/bag/clear`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

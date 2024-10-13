@@ -2,6 +2,7 @@ const { Router } = require("express");
 const Bag = require("../models/bag");
 const router = Router();
 const mongoose = require('mongoose');
+const config = require('./config');
 
 
 
@@ -159,8 +160,8 @@ router.post('/create-checkout-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: 'http://localhost:5173/success',
-            cancel_url: 'http://localhost:5173/cancel',
+            success_url: `${config.frontendUrl}/success`,
+            cancel_url: `${config.frontendUrl}/cancel`,
         });
 
         res.json({ id: session.id });
