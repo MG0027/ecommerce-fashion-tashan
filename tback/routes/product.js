@@ -87,4 +87,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/delete-invalid-products', async (req, res) => {
+  try {
+    const deletedProducts = await Product.deleteMany({
+      image: { $regex: '^/uploads' }
+    });
+
+    res.status(200).json({
+      message: `${deletedProducts.deletedCount} products removed successfully.`,
+      deletedCount: deletedProducts.deletedCount,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while deleting products.",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = router;
