@@ -15,12 +15,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Multer Cloudinary Storage
+
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'tashan', // Folder in Cloudinary
-    allowed_formats: ['jpg', 'png'], // Allowed file types
+    folder: 'tashan', 
+    allowed_formats: ['jpg', 'png'], 
   },
 });
 
@@ -34,7 +34,7 @@ router.post('/', upload.single('image'), async (req, res) => {
       return res.status(400).json({ message: "Image is required" });
     }
 
-    const imageUrl = req.file.path; // Cloudinary path after successful upload
+    const imageUrl = req.file.path; 
 
     const newProduct = await Product.create({
       image: imageUrl,

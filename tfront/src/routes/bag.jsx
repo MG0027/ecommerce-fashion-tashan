@@ -12,9 +12,7 @@ const Bag = () => {
     const { userId } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate(); 
-    const ASSET_BASE_URL = process.env.NODE_ENV === 'production'
-    ? 'https://tashan-backend.onrender.com'
-    : 'http://localhost:2700';
+ 
    
  
 
@@ -87,10 +85,10 @@ const Bag = () => {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                         {bagitems.map((item) => {
-                            const imageUrl = `${ASSET_BASE_URL}${item.productImage}`;
+                            
                             return (
                                 <div key={item.productId} className="card" style={{ width: "18rem", margin: "10px", border: 'none', position: 'relative' }}>
-                                    <img src={imageUrl} className="card-img-top" alt={item.productName} />
+                                    <img src={item.productImage} className="card-img-top" alt={item.productName} />
                                     <h5 style={{ fontFamily: 'Futura, sans-serif', marginTop: '1rem', fontWeight: 'lighter', fontSize: '1rem' }}>
                                         {item.productName} ({item.quantity}) 
                                         <button style={{ marginLeft: '', border: 'none', backgroundColor: 'white' }}>
