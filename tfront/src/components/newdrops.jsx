@@ -6,7 +6,7 @@ import AddToBag from "./addtobag";
 const Newdrops = () => {
   const products = useSelector((store) => store.products);
   const ASSET_BASE_URL = process.env.NODE_ENV === 'production'
-  ? ''
+  ? 'https://tashan-backend.onrender.com'
   : 'http://localhost:2700';
   if (!products || products.length === 0) {
     return <p>Loading products...</p>; 

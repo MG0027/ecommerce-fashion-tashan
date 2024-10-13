@@ -13,7 +13,7 @@ const Bag = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate(); 
     const ASSET_BASE_URL = process.env.NODE_ENV === 'production'
-    ? ''
+    ? 'https://tashan-backend.onrender.com'
     : 'http://localhost:2700';
    
  

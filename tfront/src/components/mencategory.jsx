@@ -8,7 +8,7 @@ function Mencategory() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const products = useSelector((store) => store.products);
   const ASSET_BASE_URL = process.env.NODE_ENV === 'production'
-  ? ''
+  ? 'https://tashan-backend.onrender.com'
   : 'http://localhost:2700';
   const filteredProducts = selectedCategory
     ? products.filter(product => product.category2 === selectedCategory && product.category === 'men')
