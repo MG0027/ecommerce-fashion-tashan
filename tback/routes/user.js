@@ -13,7 +13,7 @@ router.post("/login", async (req, res) => {
     return res.cookie('token', token, {
       httpOnly: true,
       secure: true,  // Ensure HTTPS is being used
-      sameSite: 'Lax',  // Required for cross-site cookies
+      sameSite: 'None',  // Required for cross-site cookies
       // domain: '.onrender.com',  // Allows cookies across subdomains
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     }).json({ message: 'logged in' });
