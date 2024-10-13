@@ -11,11 +11,9 @@ router.post("/login", async (req, res) => {
     const token = await User.matchPasswordAndGenerateToken(email, password);
     console.log(token);
     return res.cookie('token', token, {
-      // httpOnly: true,
-      // secure: true,  // Ensure HTTPS is being used
-      // sameSite: 'None',  // Required for cross-site cookies
-      // domain: '.onrender.com',  // Allows cookies across subdomains
-      // maxAge: 24 * 60 * 60 * 1000,  // 24 hours
+      httpOnly: true,
+    
+      maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     }).json({ message: 'logged in' });
     
   } catch (error) {
