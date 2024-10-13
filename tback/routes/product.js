@@ -1,37 +1,43 @@
 const { Router } = require("express");
 const multer = require("multer");
-const path = require("path");
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
 const checkAdmin = require('../middlewares/checkadmin');
 const Product = require("../models/product");
-const client = require('../client'); 
+const client = require('../client');
 
 const router = Router();
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    // Ensure the path is correctly resolved to the root of the project
-    const uploadPath = path.resolve(__dirname, '../public/uploads');
-    console.log("Uploading to:", uploadPath); // Log the path to ensure it's correct
-    cb(null, uploadPath);
-  },
-  filename: function (req, file, cb) {
-    const fileName = `${Date.now()}-${file.originalname}`; 
-    cb(null, fileName);
+// Initialize Cloudinary configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Multer Cloudinary Storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'tashan', // Folder in Cloudinary
+    allowed_formats: ['jpg', 'png'], // Allowed file types
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 router.post('/', upload.single('image'), async (req, res) => {
   try {
     const { name, rating, price, category, category2 } = req.body;
 
-    if (!req.file) {
+    if (!req.file || !req.file.path) {
       return res.status(400).json({ message: "Image is required" });
     }
 
+    const imageUrl = req.file.path; // Cloudinary path after successful upload
+
     const newProduct = await Product.create({
-      image: `/uploads/${req.file.filename}`,
+      image: imageUrl,
       name,
       rating,
       price,
@@ -39,8 +45,7 @@ router.post('/', upload.single('image'), async (req, res) => {
       category2,
     });
 
-   
-    await client.del('products'); 
+    await client.del('products'); // Clear cache to ensure fresh data
 
     res.status(201).json({
       message: "Product added successfully",
@@ -54,10 +59,8 @@ router.post('/', upload.single('image'), async (req, res) => {
   }
 });
 
-
 router.get('/', async (req, res) => {
   try {
-
     client.get('products', async (err, cachedProducts) => {
       if (err) {
         console.error('Error checking Redis:', err);
@@ -69,10 +72,7 @@ router.get('/', async (req, res) => {
         return res.json(JSON.parse(cachedProducts));  
       }
 
-     
       const products = await Product.find();
-      
-     
       client.setex('products', 3600, JSON.stringify(products));
 
       console.log('Cache miss');
