@@ -5,19 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const router = Router();
 
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const token = await User.matchPasswordAndGenerateToken(email, password);
-    console.log(token);
-    return res.cookie("token", token).json({ message: 'logged in' });
-    
-  } catch (error) {
-    return res.status(404);
-     
-    };
-  }
-);
+
 
 
 
