@@ -2,7 +2,7 @@ const { Router } = require("express");
 const Bag = require("../models/bag");
 const router = Router();
 const mongoose = require('mongoose');
-const config = require('./config');
+const config = require('../config');
 
 
 
