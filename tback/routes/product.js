@@ -9,8 +9,9 @@ const router = Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const uploadPath = path.resolve(__dirname, 'public', 'uploads');
-    console.log("Uploading to:", uploadPath);  // Log upload path
+    // Ensure the path is correctly resolved to the root of the project
+    const uploadPath = path.resolve(__dirname, '../public/uploads');
+    console.log("Uploading to:", uploadPath); // Log the path to ensure it's correct
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
