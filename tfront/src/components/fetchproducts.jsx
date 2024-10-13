@@ -13,7 +13,7 @@ const FetchProducts = () => {
     // const controller = new AbortController();
     // const signal = controller.signal;
     dispatch(fetchStatusActions.markFetchingStarted());
-    fetch(`${API_BASE_URL}/add"`)
+    fetch(`${API_BASE_URL}/add`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch products");
