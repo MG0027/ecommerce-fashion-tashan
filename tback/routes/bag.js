@@ -160,8 +160,8 @@ router.post('/create-checkout-session', async (req, res) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${config.frontendUrl}/success`,
-            cancel_url: `${config.frontendUrl}/cancel`,
+            success_url: `https://tashan.onrender.com/success`,
+            cancel_url: `https://tashan.onrender.com/cancel`,
         });
 
         res.json({ id: session.id });
