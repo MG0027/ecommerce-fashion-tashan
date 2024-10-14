@@ -22,22 +22,24 @@
 }
 
 @media (max-width: 768px) {
-  /* Keep elements horizontally aligned on small screens */
+
   .header-container {
     display: flex;
-    justify-content: space-between; /* Ensures space between elements */
+    justify-content: space-between; 
     align-items: center;
+    flex-direction: row !important;
+    flex-wrap: nowrap  !important;
     
   }
 
   .nav-links {
     display: flex;
-    justify-content: space-around; /* Distribute items evenly */
+    justify-content: space-around;
     margin-top: 0;
   }
 
   .nav-link {
-    font-size: 1rem; /* Slightly reduce font size on small screens */
+    font-size: 1rem; 
     padding: 5px 10px;
     text-align: center;
   }
