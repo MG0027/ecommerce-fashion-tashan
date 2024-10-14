@@ -27,7 +27,7 @@
     display: flex;
     justify-content: space-between; /* Ensures space between elements */
     align-items: center;
-    flex-direction: row; /* Horizontal layout */
+    
   }
 
   .nav-links {
