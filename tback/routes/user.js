@@ -42,7 +42,11 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,  // Match this with how the cookie was set
+    sameSite: 'None',  // Match this with how the cookie was set
+  });
   res.status(200).send({ message: 'Logged out successfully' });
 });
 
