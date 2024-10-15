@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productsActions } from "../store/productslice";
-import { fetchStatusActions } from "../store/fetchingstatusslice";
+//import { fetchStatusActions } from "../store/fetchingstatusslice";
 import API_BASE_URL from "../config";
 
 const FetchProducts = () => {
@@ -12,7 +12,7 @@ const FetchProducts = () => {
     if (fetchStatus.fetchDone) return;
     // const controller = new AbortController();
     // const signal = controller.signal;
-    dispatch(fetchStatusActions.markFetchingStarted());
+   // dispatch(fetchStatusActions.markFetchingStarted());
     fetch(`${API_BASE_URL}/add`)
       .then((res) => {
         if (!res.ok) {
@@ -22,8 +22,8 @@ const FetchProducts = () => {
       })
       .then(( products ) => {
        
-        dispatch(fetchStatusActions.markFetchDone());
-        dispatch(fetchStatusActions.markFetchingFinished());
+      //  dispatch(fetchStatusActions.markFetchDone());
+      //  dispatch(fetchStatusActions.markFetchingFinished());
         dispatch(productsActions.addInitialProducts(products)); 
       })
       .catch((error) => {
