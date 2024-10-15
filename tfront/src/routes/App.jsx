@@ -23,11 +23,12 @@ function App() {
     <>
     <Header></Header>
     <FetchProducts></FetchProducts>
-    <Fetchbag></Fetchbag>
-    {fetchStatus.currentlyFetching ? <LoadingSpinner /> :
+    
+   
      <Elements stripe={stripePromise}>
      <Outlet /> 
- </Elements>}
+ </Elements>
+ <Fetchbag></Fetchbag>
     <Footer></Footer>
      
     
