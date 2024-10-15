@@ -1,13 +1,15 @@
 import { useSelector } from "react-redux";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import AddToBag from "./addtobag";
+import LoadingSpinner from "./loadingspinner";
 
 
 const Newdrops = () => {
   const products = useSelector((store) => store.products);
 
   if (!products || products.length === 0) {
-    return <p>Loading products...</p>; 
+    return (<LoadingSpinner></LoadingSpinner>);
+              
   }
   const latestProducts = products.slice(-4); 
  

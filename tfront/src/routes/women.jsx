@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 import AddToBag from "../components/addtobag";
+import LoadingSpinner from '../components/loadingspinner';
 
 function Women() {
   const products = useSelector((store) => store.products);
 
   if (!products || products.length === 0) {
-    return <p>Loading products...</p>;
+    return (<LoadingSpinner></LoadingSpinner>);
   }
 
   const womenProducts = products.filter((product) => product.category === "women");
