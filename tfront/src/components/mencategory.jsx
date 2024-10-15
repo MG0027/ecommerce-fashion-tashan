@@ -10,10 +10,7 @@ function Mencategory() {
 
   
 
-  if (!products || products.length === 0) {
-    return (<LoadingSpinner></LoadingSpinner>);
-              
-  }
+ 
 
   const filteredProducts = selectedCategory
     ? products.filter(product => product.category2 === selectedCategory && product.category === 'men')
