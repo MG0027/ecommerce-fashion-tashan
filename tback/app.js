@@ -12,10 +12,10 @@ const userRoute = require("./routes/user");
 
 const app = express();
 
-app.use(cors({
-  origin: 'https://tashan.onrender.com',
-  credentials: true,
-}));
+  app.use(cors({
+    origin: 'https://tashan.onrender.com',
+    credentials: true,
+  }));
 
 app.use(express.json());
 app.use(cookieParser());
