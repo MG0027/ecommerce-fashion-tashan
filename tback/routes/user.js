@@ -14,7 +14,7 @@ router.post("/login", async (req, res) => {
       httpOnly: true,
       secure: true,  // Ensure HTTPS is being used
       sameSite: 'None',  // Required for cross-site cookies
-      domain: '.onrender.com',  // Allows cookies across subdomains
+      // domain: '.onrender.com',  // Allows cookies across subdomains
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     }).json({ message: 'logged in' });
     
