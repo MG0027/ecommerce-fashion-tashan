@@ -17,6 +17,19 @@ const app = express();
     credentials: true,
   }));
 
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://tashan.onrender.com');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    
+    // For preflight requests, we need to respond with 200 status
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(200);  // End the OPTIONS request
+    }
+  
+    next();  // Continue to the next middleware or route
+  });
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
