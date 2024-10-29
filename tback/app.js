@@ -34,6 +34,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
 
+
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -45,6 +46,9 @@ mongoose
 app.use('/api/add', addRoute);
 app.use("/api/user", userRoute);
 app.use("/api/bag", bagRoute);
+app.get('/keep-alive', (req, res) => {
+  res.send('OK');
+});
 
 // Anything that doesn't match the above, send back the index.html file
 
