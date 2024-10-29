@@ -12,7 +12,7 @@ import Signup from './routes/signup.jsx';
 import Bag from './routes/bag.jsx';
 import Success from './components/success.jsx';
 import Cancel from './components/fail.jsx';
-import KeepAlive from './routes/keepAlive.jsx';
+import KeepAlive from './routes/KeepAlive.jsx';
 
 const router = createBrowserRouter([
   {
